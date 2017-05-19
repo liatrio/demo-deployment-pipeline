@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liatrio Demo Deployment Pipeline</title>
+    <style>
+        h1 {
+    	     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    	     font-size: 40px;
+    	     font-style: normal;
+    	     font-variant: normal;
+    	     font-weight: 500;
+    	     line-height: 26.4px;
+        }
+        p {
+          font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+          font-size: 18px;
+          font-style: normal;
+          font-variant: normal;
+          font-weight: 200;
+          line-height: 16.4px;
+          width:80%; margin: 24px 24px 24px 24px; justify-content: center
+        }
+    </style>
+</head>
+<body>
+<div style="text-align:center">
+    <h1>Demo Deployment Pipeline</h1>
+    <div style="margin-top: 5em">
+        <div>
+            <span>
+                <a href="http://localhost:18080" target="_blank"><img border="0" alt="jenkins" src="jenkins.png" width="100" height="150"></a>
+            </span>
+            <span style="margin-left: 5em">
+                <a href="http://localhost:18081/nexus" target="_blank"><img border="0" alt="nexus" src="nexus.png" width="100" height="150"></a>
+            </span>
+            <span style="margin-left: 5em">
+                <a href="http://localhost:18888/petclinic" target="_blank"><img border="0" alt="tomcat" src="tomcat.png" width="200" height="130"></a>
+            </span>
+            <span style="margin-left: 5em">
+                <a href="http://localhost:19000" target="_blank"><img border="0" alt="sonar" src="sonar.png" width="350" height="100"></a>
+            </span>
+        </div>
+        <div>
+            <p>The purpose of this project is to demonstrate a fully functional deployment pipeline. </p>
+            <p>The tools used here are <b>Jenkins</b> for build and test a sample Java project, <b>Nexus</b> for storing the built artifacts and serving as a proxy for Maven dependencies, <b>Tomcat</b> to serve the deployed sample Java application, and <b>SonarQube</b> to scan and evaluate the source code quality.</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <span style="position:absolute; bottom:0; right:15px">
+        <a href="https://liatrio.com/" target="_blank"><img border="0" alt="liatrio" src="liatrio_logo.png"></a>
+    </span>
+</footer>
+</body>
+</html>

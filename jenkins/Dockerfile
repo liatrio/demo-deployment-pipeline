@@ -30,7 +30,7 @@ workflow-aggregator \
 sonar
 
 COPY basic-security.groovy /usr/share/jenkins/ref/init.groovy.d/basic-security.groov
-COPY spring-petclinic.xml /usr/share/jenkins/ref/jobs/spring-petclinic/config.xml
+COPY jobs /usr/share/jenkins/ref/jobs/
 COPY maven-global-settings-files.xml /usr/share/jenkins/ref/maven-global-settings-files.xml
 USER root
 COPY sonar-runner /var/jenkins_home/sonar

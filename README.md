@@ -15,7 +15,7 @@ The pipeline includes the following Docker containers:
 ## Getting started (instructions for mac)
 1. check that Docker engine is up and running
 1. open Terminal
-1. do ```git clone https://github.com/liatrio/plumbing.git```
+1. do ```git clone https://github.com/liatrio/demo-deployment-pipeline.git```
 1. cd into directory
 1. do ```docker-compose up --build```
 1. open [localhost](http://localhost) in your browser

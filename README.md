@@ -42,3 +42,57 @@ This pipeline job will run through these stages:
  * Runs a Selenium test suite against PetClinic UI in headless mode. For this stage Jenkins spins up a container based on
   custom ```liatrio/selenium-firefox``` image. It is based on ```ruby``` image and contain
   gems for selenium and headless, firefox, geckodriver. The project's Dockerfile is available [here](https://github.com/liatrio/selenium-firefox/blob/master/Dockerfile)  
+* The Jenkinsfile that orchestrates the Pipeline work:
+```
+pipeline {
+    agent none
+    stages {
+       stage('Build') {
+           agent {
+               docker {
+                   image 'maven:3.5.0'
+                   args '--network=plumbing_default'
+               }
+           }
+           steps {
+               configFileProvider(
+                       [configFile(fileId: 'nexus', variable: 'MAVEN_SETTINGS')]) {
+                   sh 'mvn -s $MAVEN_SETTINGS clean deploy -DskipTests=true -B'
+               }
+           }
+       }
+       stage('Deploy to Tomcat') {
+           agent {
+               docker {
+                   image 'alpine'
+               }
+           }
+           steps {
+               sh 'cp target/petclinic.war /usr/share/jenkins/ref/petclinic/petclinic.war'
+           }
+       }
+       stage('Sonar') {
+           agent  {
+               docker {
+                   image 'sebp/sonar-runner'
+                   args '--network=plumbing_default'
+               }
+           }
+           steps {
+               sh '/opt/sonar-runner-2.4/bin/sonar-runner'
+           }
+       }
+        stage('Selenium') {
+            agent {
+                docker {
+                    image 'liatrio/selenium-firefox'
+                    args '--network=plumbing_default'
+                }
+            }
+            steps {
+                sh 'ruby petclinic_spec.rb'
+            }
+        }
+    }
+}
+```

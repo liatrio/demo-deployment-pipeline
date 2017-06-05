@@ -10,7 +10,8 @@ services:
         volumes:
             - .:/localdev
             - /var/run/docker.sock:/var/run/docker.sock
-            - deploy:/usr/share/jenkins/ref/petclinic
+            - tomcat:/usr/share/jenkins/ref/tomcat
+            - liberty:/usr/share/jenkins/ref/liberty
         environment:
             JAVA_OPTS: -Djenkins.install.runSetupWizard=false
         ports:
@@ -34,7 +35,13 @@ services:
         ports:
             - "18888:8080"
         volumes:
-            - deploy:/usr/local/tomcat/webapps/
+            - tomcat:/usr/local/tomcat/webapps/
+    liberty:
+        image: websphere-liberty:webProfile7
+        ports:
+            - "9080:9080"
+        volumes:
+            - liberty:/config/dropins/
     dashboard:
         build: ./dashboard
         ports:

@@ -41,7 +41,7 @@ services:
     liberty:
         image: websphere-liberty:webProfile7
         ports:
-            - "9080:9080"
+            - "19080:9080"
         volumes:
             - liberty:/config/dropins/
     dashboard:

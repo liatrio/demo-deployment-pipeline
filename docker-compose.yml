@@ -1,6 +1,8 @@
 version: '3'
 volumes:
-    deploy:
+    tomcat:
+        external: false
+    liberty:
         external: false
     nexus-works:
         external: false

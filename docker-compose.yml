@@ -2,8 +2,6 @@ version: '3'
 volumes:
     tomcat:
         external: false
-    liberty:
-        external: false
     nexus-works:
         external: false
 services:
@@ -13,7 +11,6 @@ services:
             - .:/localdev
             - /var/run/docker.sock:/var/run/docker.sock
             - tomcat:/usr/share/jenkins/ref/tomcat
-            - liberty:/usr/share/jenkins/ref/liberty
         environment:
             JAVA_OPTS: -Djenkins.install.runSetupWizard=false
         ports:

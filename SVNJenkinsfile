@@ -1,0 +1,28 @@
+pipeline {
+    agent none
+    stages{
+        stage('Build') {
+            agent {
+                docker {
+                    image 'maven:3.5.0'
+                }
+            }
+            steps {
+                checkout([$class: 'SubversionSCM',
+                    filterChangelog: false,
+                    ignoreDirPropChanges: false,
+                    includedRegions: '',
+                    locations: [[credentialsId: 'globalID',
+                               depthOption: 'infinity',
+                               ignoreExternalsOption: true,
+                               local: 'release_1_7',
+                               remote: "http://svn.sys.ds.wolseley.com/svn/svc-tax/branches/release_1_7/"]]])
+                configFileProvider([configFile(fileId: 'ferguson-nexus', variable: 'MAVEN_SETTINGS')]) {
+                    sh 'mvn -s $MAVEN_SETTINGS clean install -DskipTests=true -B'
+                }
+
+            }
+        }
+    }
+}
+

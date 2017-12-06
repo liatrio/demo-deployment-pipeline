@@ -35,12 +35,6 @@ services:
             - "18888:8080"
         volumes:
             - tomcat:/usr/local/tomcat/webapps/
-    liberty:
-        image: websphere-liberty:webProfile7
-        ports:
-            - "19080:9080"
-        volumes:
-            - liberty:/config/dropins/
     dashboard:
         build: ./dashboard
         ports:

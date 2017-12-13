@@ -3,7 +3,6 @@ volumes:
     tomcat:
         external: false
     nexus-works:
-        external: false
 services:
     jenkins:
         build: ./jenkins
@@ -23,6 +22,8 @@ services:
         image: sonatype/nexus
         volumes:
             - nexus-works:/sonatype-work
+        environment:
+            MAX_HEAP: 1500m
         ports:
             - "18081:8081"
     sonar:

@@ -1,4 +1,3 @@
-FROM liatrio/jenkins-alpine:2.101
-
+FROM liatrio/jenkins-alpine:lts
 USER root
 COPY sonar-runner /var/jenkins_home/sonar

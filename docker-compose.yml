@@ -30,6 +30,10 @@ services:
         image: sonarqube
         ports:
             - "19000:9000"
+    mattermost:
+        image: mattermost-preview
+        ports:
+            - "8065:8065"
     tomcat:
         image: tomcat
         ports:

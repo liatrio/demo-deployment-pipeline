@@ -1,47 +1,47 @@
 version: '3'
-volumes:
-    tomcat:
-        external: false
-    nexus-works:
+# volumes:
+#     tomcat:
+#         external: false
+#     nexus-works:
 services:
     jenkins:
         build: ./jenkins
         volumes:
             - .:/localdev
             - /var/run/docker.sock:/var/run/docker.sock
-            - tomcat:/usr/share/jenkins/ref/tomcat
+            # - tomcat:/usr/share/jenkins/ref/tomcat
         environment:
             JAVA_OPTS: -Djenkins.install.runSetupWizard=false
         ports:
             - "18080:8080"
-        depends_on:
-            - dashboard
-            - nexus
-            - sonar
-    nexus:
-        image: sonatype/nexus
-        volumes:
-            - nexus-works:/sonatype-work
-        environment:
-            MAX_HEAP: 1500m
-        ports:
-            - "18081:8081"
-    sonar:
-        image: sonarqube
-        ports:
-            - "19000:9000"
-    tomcat:
-        image: tomcat
-        ports:
-            - "18888:8080"
-        volumes:
-            - tomcat:/usr/local/tomcat/webapps/
-    dashboard:
-        build: ./dashboard
-        ports:
-            - "80:80"
-        healthcheck:
-            test: curl -f http://dashboard
-            interval: 15s
-            timeout: 5s
-            retries: 3
+        # depends_on:
+        #     - dashboard
+        #     - nexus
+        #     - sonar
+    # nexus:
+    #     image: sonatype/nexus
+    #     volumes:
+    #         - nexus-works:/sonatype-work
+    #     environment:
+    #         MAX_HEAP: 1500m
+    #     ports:
+    #         - "18081:8081"
+    # sonar:
+    #     image: sonarqube
+    #     ports:
+    #         - "19000:9000"
+    # tomcat:
+    #     image: tomcat
+    #     ports:
+    #         - "18888:8080"
+    #     volumes:
+    #         - tomcat:/usr/local/tomcat/webapps/
+    # dashboard:
+    #     build: ./dashboard
+    #     ports:
+    #         - "80:80"
+    #     healthcheck:
+    #         test: curl -f http://dashboard
+    #         interval: 15s
+    #         timeout: 5s
+    #         retries: 3
